@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+
+        *{
+            padding: 0;
+            border: 0;
+            outline: none;
+        }
+
+        body{
+            background-image: url("/images/Monochromatic\ black\ tabletop.jpeg");
+        }
+        .mainContainer{
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .innerSection{
+            height: 550px;
+            width: 780px;  
+        }
+
+        .imageSec{
+            height: 550px;
+            width: 500px;
+            overflow: hidden;
+            position: absolute;
+        }
+
+        .slides{
+            display: none;
+        }
+
+        .active{
+            display: block;
+        }
+
+        .dot{
+            height: 15px;
+            width: 15px;
+            background-color: gray;
+            border-radius: 50%;
+            display: inline-block;
+            position: relative;
+            z-index: 10;
+            transition: background-color, 0.6s;
+        }
+
+        .dotActive{
+            background-color: brown;
+        }
+
+        .dotSection{
+            margin-top: 30px;
+            margin-left: 220px;
+        }
+
+
+        /* SignUp & Login Design */
+
+        .login{
+            position: relative;
+            height: 400px;
+            width: 400px;
+            background-color: white;
+            z-index: 5;
+            margin-top: 100px;
+            margin-left: 380px;
+        }
+
+        .head{
+            text-align: center;
+        }
+
+        .top{
+            padding-top: 20px;
+        }
+
+        .detail{
+            height: 40px;
+            width: 350px;
+            margin: 13px;
+            border: 0.5px solid rgb(255, 90, 90);
+        }
+
+        .btn{
+            height: 35px;
+            width: 150px;
+            background-color: red;
+            margin-left: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btnText{
+            color:white;
+            height: 35px;
+            width: 150px;
+            background-color: red;
+        }
+
+        .cur{
+            cursor: pointer;
+        }
+
+        .headText{
+            color: brown;
+        }
+
+        .hider{
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+
+    <form action="/signup" method="post">
+
+        <div class="mainContainer">
+
+
+            <div class="innerSection">
+                
+                <!-- Image Section -->
+
+                <div class="imageSec">
+                    <img src="/images/Pizza Kentucky.jpeg" alt="pizza" class="slides active">
+                    <img src="/images/Halloumi Burgers.jpeg" alt="burger" class="slides">
+                    <img src="/images/Cheesy Chili Baked Potato Fries (Oil-Free!).jpeg" alt="frries" class="slides">
+                </div>
+
+
+                <!-- SignUp Section -->
+
+                <div class="login loginSin" >
+
+                    <h2 class="head top">Join Us Now !!</h2>
+                    <h2 class="head headText">SIGNUP</h2>
+                    <input type="text " placeholder="   Name" class="detail" required name="name">
+                    <input type="email" placeholder="   Email" class="detail" required name="email">
+                    <input type="password" placeholder="   Enter Password" class="detail" required name="password">
+
+                    <div class="btn head">
+                        <div class="button">
+                            <button type="submit" class="btnText">SignUp</button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- dot declaration -->
+                <div class="dotSection">
+                    <div class="dot dotActive"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </form>
+
+    <script>
+
+        let slides=document.querySelectorAll(".slides");
+        let dot=document.querySelectorAll(".dot");
+
+        let currentState=0;
+
+        function stateDecider(item){
+
+            if(item >=slides.length){
+                item=0;
+            }    
+
+            slides[currentState].classList.toggle("active");
+            dot[currentState].classList.toggle("dotActive");
+            slides[item].classList.toggle("active");
+            dot[item].classList.toggle("dotActive");
+            currentState=item;
+        }
+
+        window.onload=setInterval(function(){
+            stateDecider(currentState+1);
+        },2000)
+
+    </script>
+
+</body>
+</html>
